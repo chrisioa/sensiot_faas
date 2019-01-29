@@ -1,0 +1,59 @@
+# docker-compose for running the SENSIOT Framework locally
+version: '3.3'
+
+networks:
+  backend:
+  func_functions:
+    external: true
+
+services:
+
+  influxdb:
+    image: influxdb:latest
+    networks:
+      backend:
+      func_functions:
+    environment:
+      INFLUXDB_DB: sensiot
+
+  chronograf:
+    image: chronograf:latest
+    command: chronograf --influxdb-url=http://influxdb:8086
+    networks:
+      backend:
+    ports:
+      - "8888:8888"
+
+  grafana:
+    image: grafana/grafana:latest
+    # TODO: https://github.com/grafana/grafana-docker/issues/51
+    # secrets:
+    #   - source: grafana.ini
+    #     target: /etc/grafana/grafana.ini
+    # Alternative:
+    env_file:
+      - ./config/grafana/grafana.env
+    networks:
+      backend:
+    ports:
+      - "3000:3000"
+
+
+#################################################
+  local_manager:
+    build:
+      context: ./
+      dockerfile: Dockerfile.amd64
+    image: chrisioa/multiarch_sensiot:0.0.1
+    privileged: true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./config/sensiot.json:/app/sensiot.json
+      - ./config/local_configuration.json:/etc/sensiot/local_configuration.json
+    networks:
+      backend:
+      func_functions:
+    tty: true
+    environment:
+      CONFIG: ./sensiot.json
+      SERVICE: "local_manager"

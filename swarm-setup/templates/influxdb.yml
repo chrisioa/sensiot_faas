@@ -1,0 +1,27 @@
+version: '3.3'
+
+networks:
+  influxdb-net:
+    external:
+      name: influxdb-net
+  func_functions:
+    external: true
+
+services:
+  influxdb:
+    image: influxdb:latest
+    volumes:
+      - ./data/influxdb:/var/lib/influxdb
+    networks:
+      influxdb-net:
+      func_functions:
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+      placement:
+        constraints:
+          - node.role == manager
+    environment:
+        INFLUXDB_DB: sensiot
