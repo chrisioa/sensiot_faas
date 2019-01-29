@@ -8,7 +8,7 @@
 VERSION = $(shell cat VERSION)
 DOCKER_USER=chrisioa
 NAME=multiarch_sensiot_faas
-ARCH=arm32v7 arm64v8 amd64
+ARCH=arm32v6 arm64v8 amd64
 QEMU_VERSION=v2.9.1
 QEMU=arm
 
