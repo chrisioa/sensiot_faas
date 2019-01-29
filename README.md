@@ -1,7 +1,6 @@
-# __The SENSIOT Framework__
-[![Build Status](https://travis-ci.org/r3r57/The-SENSIOT-Framework.svg?branch=master)](https://travis-ci.org/r3r57/The-SENSIOT-Framework)
-[![Docker Stars](https://img.shields.io/docker/stars/r3r57/sensiot.svg)](https://hub.docker.com/r/r3r57/sensiot/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/r3r57/sensiot.svg)](https://hub.docker.com/r/r3r57/sensiot/)
+# __The SENSIOT Framework__ FAASIFIED for Project
+
+[[![CircleCI](https://circleci.com/gh/chrisioa/sensiot_faas.svg?style=svg)](https://circleci.com/gh/chrisioa/sensiot_faas)
 
 ## Generalization of a Sensor Monitoring Framework for the Internet-of-Things (Bachelor Thesis)
 > Based on: _Environmental Monitoring of Libraries with [MonTreAL](http://dx.doi.org/10.1007/978-3-319-67008-9_52)_
