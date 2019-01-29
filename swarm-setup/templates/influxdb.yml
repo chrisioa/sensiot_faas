@@ -5,7 +5,8 @@ networks:
     external:
       name: influxdb-net
   func_functions:
-    external: true
+    external:
+      name: func_functions
 
 services:
   influxdb:

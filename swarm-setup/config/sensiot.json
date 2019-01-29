@@ -21,7 +21,7 @@
     "local_manager": {
       "local_configuration": "/etc/sensiot/local_configuration.json",
       "label": "sensiot-sensor-container",
-      "network_name": "nsq-net",
+      "network_name": "func_functions",
       "global_sensors": {
         "sensor_mock_1": {
           "service": "temperature_humidity_sensor",
