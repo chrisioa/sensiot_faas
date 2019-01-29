@@ -5,7 +5,7 @@
 #	DOCKER_USER - the docker username
 #	DOCKER_PASS - the docker password
 #	DOCKER_REPO - the docker repository
-VERSION=0.0.1
+VERSION = $(shell cat VERSION)
 DOCKER_USER=chrisioa
 NAME=multiarch_sensiot_faas
 ARCH=arm32v7 arm64v8 amd64
