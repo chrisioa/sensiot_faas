@@ -29,8 +29,9 @@ class LocalManager (threading.Thread):
 
     def __get_ip_address(self):
         with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
-            s.connect(("func_gateway", 80))
+            s.connect(("func_gateway", 8080))
             myip = s.getsockname()[0]
+            logger.info("CALL TO GET MY IP: " + myip)
         return myip
 
     def __initialize_containers(self):
