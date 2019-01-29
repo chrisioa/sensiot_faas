@@ -15,16 +15,16 @@ jobs:
           name: Push image for amd64 to dockerhub
           command: docker login -u "$DOCKERHUB_USER" -p $DOCKERHUB_PASS && make ARCH=amd64 push
   
-  build_arm32v6:
+  build_arm32v7:
     <<: *defaults
     steps:
       - checkout
       - run:
-          name: Build image for arm32v6
-          command: make ARCH=arm32v6
+          name: Build image for arm32v7
+          command: make ARCH=arm32v7
       - deploy:
-          name: Push image for arm32v6 to dockerhub
-          command: docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_PASS" && make ARCH=arm32v6 push
+          name: Push image for arm32v7 to dockerhub
+          command: docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_PASS" && make ARCH=arm32v7 push
 
 
   build_arm64v8:
@@ -54,10 +54,10 @@ workflows:
   build-and-deploy:
     jobs:
       - build_amd64
-      - build_arm32v6
+      - build_arm32v7
       - build_arm64v8
       - manifest:
           requires:
             - build_amd64
-            - build_arm32v6
+            - build_arm32v7
             - build_arm64v8
