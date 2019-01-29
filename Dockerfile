@@ -1,4 +1,4 @@
-ARG IMAGE_TARGET=python:3.6-slim
+ARG IMAGE_TARGET=alpine
 ARG ARCH=amd64
 
 FROM alpine AS qemu
