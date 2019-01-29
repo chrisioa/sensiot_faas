@@ -31,7 +31,7 @@ help:
 ###############################################
 DOCKER_USER?=chrisia
 DOMAIN?=sensiot.de
-IMAGE?=chrisioa/multiarch_sensiot_faas:0.0.2
+IMAGE?=chrisioa/multiarch_sensiot_faas:0.0.4
 NETWORK_OPTIONS?=--opt encrypted --attachable --driver overlay
 DIRECTORIES?=influxdb chronograf grafana prometheus portainer
 
@@ -70,11 +70,8 @@ create-directories:
 
 create-networks:
 	-@docker network create ${NETWORK_OPTIONS} traefik-net
-	-@docker network create ${NETWORK_OPTIONS} nsq-net
 	-@docker network create ${NETWORK_OPTIONS} dummy
 	-@docker network create ${NETWORK_OPTIONS} influxdb-net
-	-@docker network create ${NETWORK_OPTIONS} prometheus-net
-	-@docker network create ${NETWORK_OPTIONS} memcache-net
 	-@docker network ls -f scope=swarm
 
 create-secrets:
@@ -91,12 +88,9 @@ remove-directories:
 
 remove-networks:
 	-@docker network rm traefik-net
-	-@docker network rm nsq-net
 	-@docker network rm dummy
 	-@docker network rm influxdb-net
-	-@docker network rm prometheus-net
-	-@docker network rm memcache-net
-
+	
 remove-secrets:
 	-@docker secret rm sensiot.json
 	-@docker secret rm prometheus.yml
@@ -111,38 +105,19 @@ remove-infrastructure:
 ###############################################
 start-sensiot:
 	-@echo Starting independend services...
-	#@#nsq
-	#$(call start_service,nsq,nsq.yml)
-	#@#memcached
-	#$(call start_service,memcached,memcached.yml)
+
 	@#influxdb
 	$(call start_service,influxdb,influxdb.yml)
-# 	@#prometheus
-# 	$(call start_service,prometheus,prometheus.yml)
 
 	-@echo Waiting 15 seconds for services to start...
 	-@sleep 15
 
 	-@echo Starting dependend services...
-# 	@#nsqcli
-# 	$(call start_service,nsq-cli,nsq-cli.yml)
-# 	@#nsqadmin
-# 	$(call start_service,nsq-admin,nsq-admin.yml)
+
 	@#chronograf
 	$(call start_service,chronograf,chronograf.yml)
 	@#grafana
 	$(call start_service,grafana,grafana.yml)
-# 	@#sensor data memcache writer
-# 	$(call start_service,sensor-data-memcache-writer,sensor-data-memcache-writer.yml)
-# 	@#influxdb writer
-# 	$(call start_service,influxdb-writer,influxdb-writer.yml)
-# 	@#prometheus writer
-# 	$(call start_service,prometheus-writer,prometheus-writer.yml)
-# 	@#web
-# 	$(call start_service,web,web.yml)
-# 	@#sensor list memcache writer
-# 	$(call start_service,sensor-list-memcache-writer,sensor-list-memcache-writer.yml)
-
 	@#local manager
 	$(call start_service,local-manager,local-manager.yml)
 
@@ -150,37 +125,18 @@ stop-sensiot:
 	-@echo Shutting down dependend services...
 	@#local manager
 	$(call stop_service,local-manager)
-# 	@#nsqcli
-# 	$(call stop_service,nsq-cli)
-# 	@#nsqadmin
-# 	$(call stop_service,nsq-admin)
+
 	@#chronograf
 	$(call stop_service,chronograf)
 	@#grafana
 	$(call stop_service,grafana)
-# 	@#sensor data memcache writer
-# 	$(call stop_service,sensor-data-memcache-writer)
-# 	@#influxdb writer
-# 	$(call stop_service,influxdb-writer)
-# 	@#prometheus writer
-# 	$(call stop_service,prometheus-writer)
-# 	@#web
-# 	$(call stop_service,web)
-# 	@#sensor list memcache writer
-# 	$(call stop_service,sensor-list-memcache-writer)
 
 	-@echo Waiting 15 seconds for threads to finish...
 	-@sleep 15
 
 	-@echo Shutting down independend services...
-# 	@#memcached
-# 	$(call stop_service,memcached)
 	@#influxdb
 	$(call stop_service,influxdb)
-# 	@#prometheus
-# 	$(call stop_service,prometheus)
-# 	@#nsq
-# 	$(call stop_service,nsq)
 
 ###############################################
 # For Testing Purposes                        #

@@ -5,7 +5,8 @@ networks:
     external:
       name: nsq-net
   func_functions:
-    external: true
+    external: 
+      name: func_functions
 
 secrets:
   sensiot.json:
@@ -16,6 +17,7 @@ services:
     image: "{IMAGE}"
     networks:
       nsq-net:
+      func_functions:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/sensiot/local_configuration.json:/etc/sensiot/local_configuration.json:ro
