@@ -4,8 +4,8 @@
     "device_id": "RPiDev1"
   },
   "location": {
-    "building": "L9",
-    "room": "Living Room"
+    "building": "ERBA",
+    "room": "WE5/05.033"
   },
   "local_sensors": {
   },
@@ -14,5 +14,6 @@
     "faas_gateway_port": "8080",
     "db-writer": "db-writer",
     "db-prepare": "db-prepare"
-  }
+  },
+  "measurements": "Temperature & Humidity"
 }

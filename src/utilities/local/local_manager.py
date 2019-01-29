@@ -29,7 +29,7 @@ class LocalManager (threading.Thread):
 
     def __get_ip_address(self):
         with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
-            s.connect(("grafana", 4151))
+            s.connect(("8.8.8.8", 80))
             myip = s.getsockname()[0]
         return myip
 
