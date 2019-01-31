@@ -1,9 +1,6 @@
 version: '3.3'
 
 networks:
-  nsq-net:
-    external:
-      name: nsq-net
   func_functions:
     external: 
       name: func_functions
@@ -16,7 +13,6 @@ services:
   local_manager:
     image: "{IMAGE}"
     networks:
-      nsq-net:
       func_functions:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
