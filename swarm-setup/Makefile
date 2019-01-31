@@ -31,7 +31,7 @@ help:
 ###############################################
 DOCKER_USER?=chrisia
 DOMAIN?=sensiot.de
-IMAGE?=chrisioa/multiarch_sensiot_faas:0.0.6
+IMAGE?=chrisioa/multiarch_sensiot_faas:0.0.8
 NETWORK_OPTIONS?=--opt encrypted --attachable --driver overlay
 DIRECTORIES?=influxdb chronograf grafana prometheus portainer
 

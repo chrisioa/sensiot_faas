@@ -1,4 +1,4 @@
-ARG IMAGE_TARGET=alpine
+ARG IMAGE_TARGET=alpine:3.8
 ARG ARCH=amd64
 
 FROM alpine AS qemu
