@@ -29,9 +29,9 @@ help:
 ###############################################
 # Configuration                               #
 ###############################################
-DOCKER_USER?=chrisia
+DOCKER_USER?=chrisioa
 DOMAIN?=sensiot.de
-IMAGE?=chrisioa/multiarch_sensiot_faas:0.0.5
+IMAGE?=chrisioa/multiarch_sensiot_faas:0.0.7
 NETWORK_OPTIONS?=--opt encrypted --attachable --driver overlay
 DIRECTORIES?=influxdb chronograf grafana prometheus portainer
 
