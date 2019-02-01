@@ -116,8 +116,7 @@ start-sensiot:
 
 	@#chronograf
 	$(call start_service,chronograf,chronograf.yml)
-	@#grafana
-	$(call start_service,grafana,grafana.yml)
+
 	@#local manager
 	$(call start_service,local-manager,local-manager.yml)
 
@@ -128,8 +127,7 @@ stop-sensiot:
 
 	@#chronograf
 	$(call stop_service,chronograf)
-	@#grafana
-	$(call stop_service,grafana)
+
 
 	-@echo Waiting 15 seconds for threads to finish...
 	-@sleep 15
