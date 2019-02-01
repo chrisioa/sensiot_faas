@@ -42,8 +42,8 @@ class Services:
             threads = []
             local_configuration = self.__get_local_configuration()
 
-            message_queue = Queue(maxsize=10)
-            meta_queue = Queue(maxsize=10)
+            message_queue = Queue(maxsize=0)
+            meta_queue = Queue(maxsize=0)
 
             socket_reader = SocketReader("SocketReader", self.event, message_queue)
             meta_data_appender = MetaDataAppender("MetaData", self.event, message_queue, meta_queue, local_configuration)
@@ -64,7 +64,7 @@ class Services:
             threads = []
             type = os.environ['TYPE']
 
-            sensor_queue = Queue(maxsize=10)
+            sensor_queue = Queue(maxsize=0)
 
             if type == "ash2200":
                 from sensors.temperature_humidity.ash2200 import ASH2200, USBSerial

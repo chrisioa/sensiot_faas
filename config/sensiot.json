@@ -26,7 +26,7 @@
         "sensor_mock_1": {
           "service": "temperature_humidity_sensor",
           "type": "mock",
-          "image": "chrisioa/multiarch_sensiot:0.0.1",
+          "image": "chrisioa/multiarch_sensiot:0.0.9",
           "devices": [],
           "command": "",
           "configuration": {
@@ -39,7 +39,7 @@
         "sensor_mock_2": {
           "service": "temperature_humidity_sensor",
           "type": "mock",
-          "image": "chrisioa/multiarch_sensiot:0.0.1",
+          "image": "chrisioa/multiarch_sensiot:0.0.9",
           "devices": [],
           "command": "",
           "configuration": {
